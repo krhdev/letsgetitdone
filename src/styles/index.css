@@ -1,5 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap');
 
+/* Page-level reset so the app fills the browser as a proper standalone page,
+   not just an embedded widget. On mobile it goes edge-to-edge. */
+html, body, #root { height: 100%; margin: 0; }
+body { background: #E4E7EE; }
+#root { display: flex; justify-content: center; padding: 28px 16px; box-sizing: border-box; }
+@media (max-width: 640px) {
+  #root { padding: 0; }
+}
+
 /* LGSDT brand palette: navy #1a2744, gold #f5c050, white */
 .gsd-root {
   --ink: #1A2744;
@@ -14,10 +23,15 @@
   background: var(--paper);
   border-radius: 16px;
   padding: 0;
-  max-width: 100%;
-  min-height: 480px;
+  width: 100%;
+  max-width: 880px;
+  min-height: calc(100vh - 56px);
   overflow: hidden;
   border: 1px solid var(--line);
+  box-shadow: 0 8px 30px rgba(26, 39, 68, 0.08);
+}
+@media (max-width: 640px) {
+  .gsd-root { border-radius: 0; border: none; box-shadow: none; min-height: 100vh; }
 }
 .gsd-root * { box-sizing: border-box; }
 .loading { padding: 40px; text-align: center; font-family: 'JetBrains Mono', monospace; color: var(--muted); }
@@ -517,3 +531,45 @@
   margin-bottom: 12px;
 }
 .goal-next-action strong { font-family: 'Inter'; font-weight: 700; }
+
+.backup-card {
+  background: var(--paper-2);
+  border-radius: 12px;
+  padding: 16px 18px;
+  margin-top: 24px;
+}
+.backup-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+.backup-text {
+  font-family: 'Inter';
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--muted);
+  margin: 0 0 12px;
+  max-width: 52ch;
+}
+.backup-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.backup-load-btn {
+  display: flex; align-items: center; gap: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  padding: 8px 14px;
+  border: 1.5px solid var(--line);
+  border-radius: 8px;
+  background: var(--card);
+  color: var(--ink);
+  cursor: pointer;
+}
+.backup-load-btn:hover { border-color: var(--accent); }
+.backup-status {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--accent-dark, #8A6B10);
+  margin-top: 10px;
+}

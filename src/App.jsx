@@ -135,7 +135,7 @@ export default function GetShitDoneApp() {
           />
         )}
         {tab === "help" && <HowToUse />}
-        {tab === "about" && <About />}
+        {tab === "about" && <About data={data} setData={setData} />}
       </main>
     </div>
   );

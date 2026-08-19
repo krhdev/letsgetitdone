@@ -1,4 +1,6 @@
-export default function About() {
+import DataBackup from "../components/DataBackup";
+
+export default function About({ data, setData }) {
   return (
     <div className="view info-page">
       <h2 className="info-heading">This isn't another bloody planner</h2>
@@ -54,6 +56,8 @@ export default function About() {
       </div>
 
       <p className="info-signature">Amy Mandelj — A&amp;T Office Admin Solutions</p>
+
+      <DataBackup data={data} setData={setData} />
     </div>
   );
 }
