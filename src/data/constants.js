@@ -17,9 +17,12 @@ export const emptyWeek = () =>
 
 // Mirrors the Brain Dump sheet's "Next Move" formula from the workbook:
 // done -> DONE, urgent+important -> DO FIRST, important only -> SCHEDULE,
-// urgent only -> QUICK WIN/DELEGATE, neither -> PARK.
+// urgent only -> QUICK WIN/DELEGATE, neither -> PARK. "Can wait" is a manual
+// override the person sets themselves, so it takes priority over the
+// auto-worked-out categories (short of the task actually being done).
 export const getNextMove = (task) => {
   if (task.status === "done") return "DONE";
+  if (task.canWait) return "CAN WAIT";
   if (task.urgent && task.important) return "DO FIRST";
   if (task.important) return "SCHEDULE";
   if (task.urgent) return "QUICK WIN / DELEGATE";

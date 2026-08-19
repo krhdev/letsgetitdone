@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Plus, Flag, Star } from "lucide-react";
+import { Plus, Flag, Star, Clock } from "lucide-react";
 import { ENERGY, getNextMove } from "../data/constants";
 import TaskCard from "../components/TaskCard";
 
@@ -8,21 +8,24 @@ export default function BrainDump({ tasks, addTask, updateTask, deleteTask, togg
   const [energy, setEnergy] = useState("medium");
   const [urgent, setUrgent] = useState(false);
   const [important, setImportant] = useState(false);
+  const [canWait, setCanWait] = useState(false);
   const [mins, setMins] = useState("");
 
   const submit = (e) => {
     e.preventDefault();
     if (!text.trim()) return;
-    addTask({ text: text.trim(), energy, urgent, important, estMins: mins ? Number(mins) : null });
+    addTask({ text: text.trim(), energy, urgent, important, canWait, estMins: mins ? Number(mins) : null });
     setText("");
     setUrgent(false);
     setImportant(false);
+    setCanWait(false);
     setMins("");
   };
 
   const notDone = tasks.filter((t) => t.status !== "done");
-  const active = notDone.filter((t) => getNextMove(t) !== "PARK");
-  const parked = notDone.filter((t) => getNextMove(t) === "PARK");
+  const active = notDone.filter((t) => !t.canWait && getNextMove(t) !== "PARK");
+  const waiting = notDone.filter((t) => t.canWait);
+  const parked = notDone.filter((t) => !t.canWait && getNextMove(t) === "PARK");
   const done = tasks.filter((t) => t.status === "done");
 
   return (
@@ -65,6 +68,13 @@ export default function BrainDump({ tasks, addTask, updateTask, deleteTask, togg
           >
             <Star size={12} /> Important
           </button>
+          <button
+            type="button"
+            className={`canwait-toggle ${canWait ? "on" : ""}`}
+            onClick={() => setCanWait(!canWait)}
+          >
+            <Clock size={12} /> Can Wait
+          </button>
           <div className="field-group">
             <span className="mini-label">Est. minutes</span>
             <input
@@ -82,7 +92,7 @@ export default function BrainDump({ tasks, addTask, updateTask, deleteTask, togg
       </form>
 
       <div className="task-list">
-        {active.length === 0 && parked.length === 0 && (
+        {active.length === 0 && waiting.length === 0 && parked.length === 0 && (
           <div className="empty">Nothing dumped yet. Start typing above.</div>
         )}
         {active.map((t) => (
@@ -96,6 +106,24 @@ export default function BrainDump({ tasks, addTask, updateTask, deleteTask, togg
           />
         ))}
       </div>
+
+      {waiting.length > 0 && (
+        <details className="done-section">
+          <summary>{waiting.length} can wait (deliberately put off, not forgotten)</summary>
+          <div className="task-list">
+            {waiting.map((t) => (
+              <TaskCard
+                key={t.id}
+                task={t}
+                onUpdate={updateTask}
+                onDelete={deleteTask}
+                onToggleToday={toggleToday}
+                showTodayToggle
+              />
+            ))}
+          </div>
+        </details>
+      )}
 
       {parked.length > 0 && (
         <details className="done-section">

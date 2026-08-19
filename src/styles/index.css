@@ -479,6 +479,18 @@ body { background: #E4E7EE; }
   cursor: pointer;
 }
 .important-toggle.on { border-color: #B8860B; color: #8A6B10; background: #F5C05022; }
+.canwait-toggle {
+  display: flex; align-items: center; gap: 5px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  padding: 5px 8px;
+  border: 1.5px solid var(--line);
+  border-radius: 8px;
+  background: var(--card);
+  color: var(--muted);
+  cursor: pointer;
+}
+.canwait-toggle.on { border-color: #4C7EA8; color: #345D80; background: #4C7EA822; }
 .notes-toggle {
   display: flex; align-items: center; gap: 5px;
   font-family: 'JetBrains Mono', monospace;

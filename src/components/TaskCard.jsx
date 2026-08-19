@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Flag, Star, Check, Trash2, StickyNote } from "lucide-react";
+import { Flag, Star, Check, Trash2, StickyNote, Clock } from "lucide-react";
 import { ENERGY, getNextMove } from "../data/constants";
 
 export default function TaskCard({ task, onUpdate, onDelete, onToggleToday, showTodayToggle, showPriority = true }) {
@@ -28,6 +28,7 @@ export default function TaskCard({ task, onUpdate, onDelete, onToggleToday, show
             <Star size={12} color="#F5C050" fill="#F5C050" strokeWidth={2} title="Important" />
           )}
           {showPriority && task.urgent && <Flag size={12} color="#D14B3D" strokeWidth={2.5} title="Urgent" />}
+          {showPriority && task.canWait && <Clock size={12} color="#4C7EA8" strokeWidth={2} title="Can wait" />}
           {task.estMins ? <span className="mins">{task.estMins}m</span> : null}
         </div>
       </div>
@@ -60,6 +61,12 @@ export default function TaskCard({ task, onUpdate, onDelete, onToggleToday, show
               onClick={() => onUpdate(task.id, { important: !task.important })}
             >
               <Star size={11} /> Important
+            </button>
+            <button
+              className={`canwait-toggle ${task.canWait ? "on" : ""}`}
+              onClick={() => onUpdate(task.id, { canWait: !task.canWait })}
+            >
+              <Clock size={11} /> Can Wait
             </button>
           </>
         )}

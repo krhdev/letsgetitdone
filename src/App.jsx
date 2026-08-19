@@ -29,7 +29,7 @@ export default function GetShitDoneApp() {
       ...d,
       tasks: [
         ...d.tasks,
-        { id: uid(), status: "not-started", nextMove: "", notes: "", chosenToday: false, ...partial },
+        { id: uid(), status: "not-started", nextMove: "", notes: "", chosenToday: false, canWait: false, ...partial },
       ],
     }));
 
