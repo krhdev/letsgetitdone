@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Plus, Calendar, Trash2 } from "lucide-react";
+import { Plus, Calendar, Trash2, ArrowRight } from "lucide-react";
 import TaskCard from "../components/TaskCard";
 import StepAdder from "../components/StepAdder";
 
@@ -10,7 +10,7 @@ export default function DeadlineBreakdown({ goals, addGoal, updateGoal, deleteGo
   const submit = (e) => {
     e.preventDefault();
     if (!newGoal.trim()) return;
-    addGoal({ title: newGoal.trim(), deadline: newDeadline, why: "", steps: [] });
+    addGoal({ title: newGoal.trim(), deadline: newDeadline, why: "", firstAction: "", steps: [] });
     setNewGoal("");
     setNewDeadline("");
   };
@@ -50,6 +50,7 @@ export default function DeadlineBreakdown({ goals, addGoal, updateGoal, deleteGo
         const dl = daysLeft(g.deadline);
         const doneSteps = g.steps.filter((s) => s.status === "done").length;
         const pct = g.steps.length ? Math.round((doneSteps / g.steps.length) * 100) : 0;
+        const nextStep = g.steps.find((s) => s.status !== "done");
         return (
           <div key={g.id} className="goal-card">
             <div className="goal-head">
@@ -65,12 +66,39 @@ export default function DeadlineBreakdown({ goals, addGoal, updateGoal, deleteGo
                 <Trash2 size={14} />
               </button>
             </div>
+
+            <div className="goal-field">
+              <label className="goal-field-label">Why it matters</label>
+              <textarea
+                className="goal-field-input"
+                placeholder="Why this outcome actually matters..."
+                value={g.why || ""}
+                onChange={(e) => updateGoal(g.id, { why: e.target.value })}
+              />
+            </div>
+            <div className="goal-field">
+              <label className="goal-field-label">First tiny action</label>
+              <input
+                className="goal-field-input single-line"
+                placeholder="The smallest possible first move..."
+                value={g.firstAction || ""}
+                onChange={(e) => updateGoal(g.id, { firstAction: e.target.value })}
+              />
+            </div>
+
             <div className="progress-bar">
               <div className="progress-fill" style={{ width: `${pct}%` }} />
             </div>
             <div className="progress-label">
               {doneSteps} / {g.steps.length} steps done ({pct}%)
             </div>
+
+            {nextStep && (
+              <div className="goal-next-action">
+                <ArrowRight size={13} /> Next action: <strong>{nextStep.text}</strong>
+              </div>
+            )}
+
             <div className="task-list">
               {g.steps.map((s) => (
                 <TaskCard
@@ -78,6 +106,7 @@ export default function DeadlineBreakdown({ goals, addGoal, updateGoal, deleteGo
                   task={s}
                   onUpdate={(id, patch) => updateStep(g.id, id, patch)}
                   onDelete={(id) => deleteStep(g.id, id)}
+                  showPriority={false}
                 />
               ))}
             </div>

@@ -440,3 +440,80 @@
   font-weight: 700;
   color: var(--ink);
 }
+
+.flag-toggle.small { font-size: 10px; padding: 5px 8px; }
+.important-toggle {
+  display: flex; align-items: center; gap: 5px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  padding: 5px 8px;
+  border: 1.5px solid var(--line);
+  border-radius: 8px;
+  background: var(--card);
+  color: var(--muted);
+  cursor: pointer;
+}
+.important-toggle.on { border-color: #B8860B; color: #8A6B10; background: #F5C05022; }
+.notes-toggle {
+  display: flex; align-items: center; gap: 5px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  padding: 5px 8px;
+  border: 1.5px solid var(--line);
+  border-radius: 8px;
+  background: var(--card);
+  color: var(--muted);
+  cursor: pointer;
+}
+.notes-toggle.on { border-color: var(--accent); color: var(--ink); background: #F5C05014; }
+.notes-input {
+  width: 100%;
+  min-height: 50px;
+  font-family: 'Inter';
+  font-size: 12.5px;
+  padding: 8px 10px;
+  border: 1.5px dashed var(--line);
+  border-radius: 8px;
+  background: var(--paper-2);
+  color: var(--ink);
+  outline: none;
+  resize: vertical;
+}
+
+.goal-field { margin-bottom: 10px; }
+.goal-field-label {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+.goal-field-input {
+  width: 100%;
+  font-family: 'Inter';
+  font-size: 13px;
+  padding: 7px 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+  color: var(--ink);
+  outline: none;
+  resize: vertical;
+  min-height: 44px;
+}
+.goal-field-input.single-line { min-height: unset; }
+.goal-field-input:focus { border-color: var(--accent); }
+
+.goal-next-action {
+  display: flex; align-items: center; gap: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11.5px;
+  color: var(--ink);
+  background: var(--paper-2);
+  border-radius: 8px;
+  padding: 8px 10px;
+  margin-bottom: 12px;
+}
+.goal-next-action strong { font-family: 'Inter'; font-weight: 700; }

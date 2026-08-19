@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Plus, Flag } from "lucide-react";
+import { Plus, Flag, Star } from "lucide-react";
 import { ENERGY } from "../data/constants";
 import TaskCard from "../components/TaskCard";
 
@@ -7,14 +7,16 @@ export default function BrainDump({ tasks, addTask, updateTask, deleteTask, togg
   const [text, setText] = useState("");
   const [energy, setEnergy] = useState("medium");
   const [urgent, setUrgent] = useState(false);
+  const [important, setImportant] = useState(false);
   const [mins, setMins] = useState("");
 
   const submit = (e) => {
     e.preventDefault();
     if (!text.trim()) return;
-    addTask({ text: text.trim(), energy, urgent, estMins: mins ? Number(mins) : null });
+    addTask({ text: text.trim(), energy, urgent, important, estMins: mins ? Number(mins) : null });
     setText("");
     setUrgent(false);
+    setImportant(false);
     setMins("");
   };
 
@@ -50,6 +52,13 @@ export default function BrainDump({ tasks, addTask, updateTask, deleteTask, togg
             onClick={() => setUrgent(!urgent)}
           >
             <Flag size={12} /> Urgent
+          </button>
+          <button
+            type="button"
+            className={`important-toggle ${important ? "on" : ""}`}
+            onClick={() => setImportant(!important)}
+          >
+            <Star size={12} /> Important
           </button>
           <input
             className="mins-input"

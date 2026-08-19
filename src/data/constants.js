@@ -14,3 +14,14 @@ export const emptyWeek = () =>
   Object.fromEntries(
     DAYS.map((d) => [d, { energy: "medium", outcome: "", task2: "", task3: "", canWait: "", win: "", done: false }])
   );
+
+// Mirrors the Brain Dump sheet's "Next Move" formula from the workbook:
+// done -> DONE, urgent+important -> DO FIRST, important only -> SCHEDULE,
+// urgent only -> QUICK WIN/DELEGATE, neither -> PARK.
+export const getNextMove = (task) => {
+  if (task.status === "done") return "DONE";
+  if (task.urgent && task.important) return "DO FIRST";
+  if (task.important) return "SCHEDULE";
+  if (task.urgent) return "QUICK WIN / DELEGATE";
+  return "PARK";
+};
