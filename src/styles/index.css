@@ -183,6 +183,17 @@ body { background: #E4E7EE; }
 .energy-dot.active { background: var(--dot); }
 .energy-dot.lg { width: 26px; height: 26px; }
 
+.field-group { display: flex; flex-direction: column; gap: 3px; }
+.mini-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+}
+.energy-select-group { display: flex; align-items: center; gap: 6px; }
+.energy-select-group .mini-label { white-space: nowrap; }
+
 .task-list { display: flex; flex-direction: column; gap: 8px; }
 .empty {
   font-family: 'JetBrains Mono', monospace;

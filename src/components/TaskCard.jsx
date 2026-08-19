@@ -33,16 +33,19 @@ export default function TaskCard({ task, onUpdate, onDelete, onToggleToday, show
       </div>
 
       <div className="task-controls">
-        <div className="energy-select">
-          {Object.keys(ENERGY).map((lvl) => (
-            <button
-              key={lvl}
-              className={`energy-dot ${task.energy === lvl ? "active" : ""}`}
-              style={{ "--dot": ENERGY[lvl].color }}
-              onClick={() => onUpdate(task.id, { energy: lvl })}
-              title={ENERGY[lvl].label}
-            />
-          ))}
+        <div className="energy-select-group">
+          <span className="mini-label">Energy</span>
+          <div className="energy-select">
+            {Object.keys(ENERGY).map((lvl) => (
+              <button
+                key={lvl}
+                className={`energy-dot ${task.energy === lvl ? "active" : ""}`}
+                style={{ "--dot": ENERGY[lvl].color }}
+                onClick={() => onUpdate(task.id, { energy: lvl })}
+                title={ENERGY[lvl].label}
+              />
+            ))}
+          </div>
         </div>
         {showPriority && (
           <>

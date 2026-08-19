@@ -25,16 +25,19 @@ export default function WeeklyPlanner({ week, updateDay }) {
                   {d.done && <Check size={11} color="#FFFFFF" strokeWidth={3} />}
                 </button>
               </div>
-              <div className="energy-select">
-                {Object.keys(ENERGY).map((lvl) => (
-                  <button
-                    key={lvl}
-                    className={`energy-dot ${d.energy === lvl ? "active" : ""}`}
-                    style={{ "--dot": ENERGY[lvl].color }}
-                    onClick={() => updateDay(day, { energy: lvl })}
-                    title={ENERGY[lvl].label}
-                  />
-                ))}
+              <div className="field-group">
+                <span className="mini-label">Energy expected</span>
+                <div className="energy-select">
+                  {Object.keys(ENERGY).map((lvl) => (
+                    <button
+                      key={lvl}
+                      className={`energy-dot ${d.energy === lvl ? "active" : ""}`}
+                      style={{ "--dot": ENERGY[lvl].color }}
+                      onClick={() => updateDay(day, { energy: lvl })}
+                      title={ENERGY[lvl].label}
+                    />
+                  ))}
+                </div>
               </div>
               <input
                 className="day-input main"
