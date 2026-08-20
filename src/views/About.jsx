@@ -1,7 +1,17 @@
 import DataBackup from "../components/DataBackup";
+import SyncAccount from "../components/SyncAccount";
 import atLogo from "../assets/at-logo.png";
 
-export default function About({ data, setData }) {
+export default function About({
+  data,
+  setData,
+  session,
+  authLoading,
+  signInWithEmail,
+  signOut,
+  syncEnabled,
+  syncStatus,
+}) {
   return (
     <div className="view info-page">
       <h2 className="info-heading">This isn't another bloody planner</h2>
@@ -88,6 +98,15 @@ export default function About({ data, setData }) {
           </p>
         </div>
       </div>
+
+      <SyncAccount
+        session={session}
+        authLoading={authLoading}
+        signInWithEmail={signInWithEmail}
+        signOut={signOut}
+        syncEnabled={syncEnabled}
+        syncStatus={syncStatus}
+      />
 
       <DataBackup data={data} setData={setData} />
     </div>
