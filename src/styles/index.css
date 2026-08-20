@@ -384,8 +384,41 @@ body { background: #E4E7EE; }
   font-family: 'JetBrains Mono', monospace;
   font-size: 11px;
   color: var(--muted);
+}
+.origin-text {
+  font-family: 'Inter';
+  font-size: 14.5px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.made-by {
   margin-top: 20px;
 }
+.signature-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+}
+.signature-logo {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+.signature-icon {
+  width: 34px;
+  height: 34px;
+  padding: 6px;
+  color: var(--ink);
+  box-sizing: border-box;
+}
+.made-by a {
+  color: var(--ink);
+  font-weight: 600;
+}
+.made-by a:hover { color: var(--accent); }
 
 .rule-card {
   background: var(--paper-2);
