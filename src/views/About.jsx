@@ -1,17 +1,7 @@
 import DataBackup from "../components/DataBackup";
-import SyncAccount from "../components/SyncAccount";
 import atLogo from "../assets/at-logo.png";
 
-export default function About({
-  data,
-  setData,
-  session,
-  authLoading,
-  signInWithEmail,
-  signOut,
-  syncEnabled,
-  syncStatus,
-}) {
+export default function About({ data, setData }) {
   return (
     <div className="view info-page">
       <h2 className="info-heading">This isn't another bloody planner</h2>
@@ -69,8 +59,11 @@ export default function About({
       <div className="rule-card">
         <div className="rule-card-title">How this happened</div>
         <p className="origin-text">
-          I showed Kat the spreadsheet I'd been running this whole system out of. She took one look and said,
-          "I can turn that into a PWA" — a progressive web app. That was it. The collab began.
+          Every good double act needs an origin story. Ours starts with a spreadsheet held together by formulas,
+          hope and mild panic. I showed it to Kat expecting sympathy. Instead she squinted at it for about four
+          seconds and said, "I can turn that into a PWA." (A progressive web app, for anyone else wondering. No app
+          store faff, just open it and go.) Turns out she could. One spreadsheet, one alarmingly capable developer,
+          and that's how the collab began.
         </p>
       </div>
 
@@ -98,15 +91,6 @@ export default function About({
           </p>
         </div>
       </div>
-
-      <SyncAccount
-        session={session}
-        authLoading={authLoading}
-        signInWithEmail={signInWithEmail}
-        signOut={signOut}
-        syncEnabled={syncEnabled}
-        syncStatus={syncStatus}
-      />
 
       <DataBackup data={data} setData={setData} />
     </div>
