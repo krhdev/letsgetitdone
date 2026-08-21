@@ -59,11 +59,10 @@ export default function About({ data, setData }) {
       <div className="rule-card">
         <div className="rule-card-title">How this happened</div>
         <p className="origin-text">
-          Every good double act needs an origin story. Ours starts with a spreadsheet held together by formulas,
-          hope and mild panic. I showed it to Kat expecting sympathy. Instead she squinted at it for about four
-          seconds and said, "I can turn that into a PWA." (A progressive web app, for anyone else wondering. No app
-          store faff, just open it and go.) Turns out she could. One spreadsheet, one alarmingly capable developer,
-          and that's how the collab began.
+          It started with a spreadsheet, one I was genuinely quite proud of, though I know plenty of people would
+          take one look and run. I sent it to Kat anyway. Four seconds later: "I can turn that into a PWA." No app
+          store needed, just open it and go. And that's the whole story, one spreadsheet, one brilliant developer,
+          and an app that actually works.
         </p>
       </div>
 
