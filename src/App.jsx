@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { Zap } from "lucide-react";
 import useDataStore from "./hooks/useDataStore";
+import useAuth from "./hooks/useAuth";
+import useCloudSync from "./hooks/useCloudSync";
+import HeaderSync from "./components/HeaderSync";
 import { uid } from "./data/constants";
 import BrainDump from "./views/BrainDump";
 import TodayTop3 from "./views/TodayTop3";
@@ -22,6 +25,8 @@ const TABS = [
 
 export default function GetShitDoneApp() {
   const [data, setData, loading] = useDataStore();
+  const { session, authLoading, signInWithEmail, signOut, syncEnabled } = useAuth();
+  const { status: syncStatus } = useCloudSync(session, data, setData, loading);
   const [tab, setTab] = useState("about");
 
   const addTask = (partial) =>
@@ -95,7 +100,17 @@ export default function GetShitDoneApp() {
           <Zap size={18} strokeWidth={2.5} />
           <span>LET'S GET SHIT DONE!</span>
         </div>
-        <div className="tagline">pick three, not thirty</div>
+        <div className="header-right">
+          <div className="tagline">pick three, not thirty</div>
+          <HeaderSync
+            session={session}
+            authLoading={authLoading}
+            signInWithEmail={signInWithEmail}
+            signOut={signOut}
+            syncEnabled={syncEnabled}
+            syncStatus={syncStatus}
+          />
+        </div>
       </header>
 
       <nav className="tabs">

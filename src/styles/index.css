@@ -64,6 +64,68 @@ body { background: #E4E7EE; }
   color: #C9CEDB;
 }
 
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header-sync {
+  position: relative;
+}
+.header-sync-btn {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  background: var(--paper);
+  color: var(--ink);
+  border: none;
+  border-radius: 6px;
+  padding: 6px 10px;
+  cursor: pointer;
+  white-space: nowrap;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.header-sync-btn:hover { background: var(--accent); }
+.header-sync-popover {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  width: 260px;
+  background: var(--paper);
+  color: var(--ink);
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+  z-index: 30;
+  text-align: left;
+}
+.header-sync-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+.header-sync-text {
+  font-family: 'Inter';
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--muted);
+  margin: 0 0 12px;
+}
+.header-sync-form { display: flex; flex-direction: column; gap: 8px; }
+.header-sync-form .text-input { font-size: 13px; padding: 8px 10px; }
+.header-sync-status {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--accent-dark, #8A6B10);
+  margin-top: 10px;
+}
+
 .tabs {
   display: flex;
   gap: 2px;
@@ -384,8 +446,41 @@ body { background: #E4E7EE; }
   font-family: 'JetBrains Mono', monospace;
   font-size: 11px;
   color: var(--muted);
+}
+.origin-text {
+  font-family: 'Inter';
+  font-size: 14.5px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.made-by {
   margin-top: 20px;
 }
+.signature-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+}
+.signature-logo {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+.signature-icon {
+  width: 34px;
+  height: 34px;
+  padding: 6px;
+  color: var(--ink);
+  box-sizing: border-box;
+}
+.made-by a {
+  color: var(--ink);
+  font-weight: 600;
+}
+.made-by a:hover { color: var(--accent); }
 
 .rule-card {
   background: var(--paper-2);
