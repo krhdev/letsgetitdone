@@ -4,6 +4,7 @@ import useDataStore from "./hooks/useDataStore";
 import useAuth from "./hooks/useAuth";
 import useCloudSync from "./hooks/useCloudSync";
 import HeaderSync from "./components/HeaderSync";
+import InstallBanner from "./components/InstallBanner";
 import { uid } from "./data/constants";
 import BrainDump from "./views/BrainDump";
 import TodayTop3 from "./views/TodayTop3";
@@ -112,6 +113,8 @@ export default function GetShitDoneApp() {
           />
         </div>
       </header>
+
+      <InstallBanner />
 
       <nav className="tabs">
         {TABS.map((t) => (
